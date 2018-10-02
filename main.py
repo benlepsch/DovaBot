@@ -15,18 +15,7 @@ gaz_coins = {"<@!262637906865291264>" : 11, "<@!178876334095859712>" : 7, "<@!20
              "<@385092345814581260>" : 7, "<@420346616977817602>" : 2, "<@175784984655822848>" : 7,      # SlayinSteven, DevilOW, Matthzw
              "<@!257037119153897472>" : 16}                                                              # Liberosi/Aku
 
-bossAlive = False
-bossHP = 0
-bossDmg = 0
-bossRace = ''
-bossType = ''
-
-hp = 0
-dmg = 0
-
-roll = 0
-
-bossRaces = ['Orcish', 'Elvish', 'Human', 'Cotton candy']
+bossRaces = ['Orcish', 'Elvish']
 bossTypes = ['Mage', 'Knight', 'Archer']
 
 def import_values(file):                                # Import gaz coin values from a .txt file
@@ -90,13 +79,32 @@ class MyClient(discord.Client):
 
         # end test commands
 
-        if message.content.startswith('!summonDungeonBoss'):
-            if not bossAlive:
-                roll = random.randint(0,3)
-                bossRace = bossRaces[roll]
-                if not bossRace == bossRaces[3]:
-                    roll = random.randint(0,2)
-                    bossType = bossTypes[roll]
+        if message.content.startswith('!dungeonBoss'):
+            bossHP = 0
+            bossDmg = 0
+            roll = 0
+            bossType = ''
+            bossRace = ''
+            if len(message.content.split()) == 1:
+                roll = random.randint(0,1)
+                bossRace = bossRaces[roll]    #Determine Race and Type
+                roll = random.randint(0,2)
+                bossType = bossTypes[roll]
+                bossHP = random.randint(5,20)
+                output = "You have summoned an " + bossRace + " " + bossType + " with HP of " + str(bossHP) + "."
+                bossAlive = True
+                await message.channel.send(output)
+            else:
+                user = message.content.split()
+                if len(user) > 1:
+                    user.pop(0)
+                    if user[0] == '!roll':
+                        dmg = random.randint(0,20)
+                    else:
+                        await message.channel.send("Please enter a valid command.")
+                    await message.channel.send("You *tried* to deal " + str(dmg) + " damage, but they dodged and hit you with " + str(random.randint(1238475,123515627)) + " damage and you died.")
+                else:
+                    await message.channel.send("Since there is already a boss spawned, you need to enter a secondary command.")
 
         
         if message.content.startswith('!hello'):
@@ -223,8 +231,8 @@ class MyClient(discord.Client):
             
         if message.content.startswith('!dovabotcommands'):                                          # !dovabotcommands
             await message.channel.send('''!hello : outputs "Hello <user>" \n!spam <number of times> <message> : spams the set message the number of times \n!badping : prints the pingsock emoji
-!diagnoseme <symptoms> : Diagnoses your symptoms and outputs what disease you have. \n!gazcoins <user(optional)> : outputs the number of gazcoins the user has. If there isn't a user entered, it gives the number you have.
-!applause : prints the clapping emoji 50 times''')
+!diagnoseme <symptoms> : Diagnoses your symptoms and outputs what disease you have \n!gazcoins <user(optional)> : outputs the number of gazcoins the user has. If there isn't a user entered, it gives the number you have
+!applause : prints the clapping emoji 50 times \n!doot : says \'doot doot\' and prints a spooky skeleton image''')
 
 
 client = MyClient()
