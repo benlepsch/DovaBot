@@ -79,7 +79,7 @@ class MyClient(discord.Client):
 
         # end test commands
 
-        if message.content.startswith('!dungeonBoss'):
+        if message.content.startswith('!dungeonBoss'):                                      # !dungeonBoss
             bossHP = 0
             bossDmg = 0
             roll = 0
@@ -100,9 +100,9 @@ class MyClient(discord.Client):
                     user.pop(0)
                     if user[0] == '!roll':
                         dmg = random.randint(0,20)
+                        await message.channel.send("You *tried* to deal " + str(dmg) + " damage, but they dodged and hit you with " + str(random.randint(1238475,123515627)) + " damage and you died.")
                     else:
                         await message.channel.send("Please enter a valid command.")
-                    await message.channel.send("You *tried* to deal " + str(dmg) + " damage, but they dodged and hit you with " + str(random.randint(1238475,123515627)) + " damage and you died.")
                 else:
                     await message.channel.send("Since there is already a boss spawned, you need to enter a secondary command.")
 
@@ -207,7 +207,11 @@ class MyClient(discord.Client):
             command = message.content.split()
             command.pop(0)
             
-            number = int(command[0])
+            try:
+                number = int(command[0])
+            except:
+                await message.channel.send('Please enter a number')
+                number = 0
             command.pop(0)
             
             print_string = ''
