@@ -69,12 +69,13 @@ class MyClient(discord.Client):
     async def on_message(self, message):
         # we do not want the bot to reply to itself (actually commenting that out rn)
         if message.author.id == self.user.id:
-            return
+            if not message.content.startswith('!doot'):
+                return
 
 
         # test commands go here
 
-        if message.content.startswith('!testcommand'):
+        if message.content.startswith('!testcommand'):                                      # !testcommand
             await message.channel.send("it works")
 
         # end test commands
@@ -110,9 +111,14 @@ class MyClient(discord.Client):
         if message.content.startswith('!hello'):
             await message.channel.send('Is it me you\'re looking for?')                  # !hello
 
-        if message.content.startswith('!doot'):
+                                                                                     #  ''' SENDING PICTURES '''
+        if message.content.startswith('!doot'):                                         # !doot
             file = discord.File("data\\doot.jpg",filename="doot.jpg")
             await message.channel.send('Doot Doot', file=file)
+        if message.content.startswith('!canada'):                                       # !canada
+            file = discord.File("data\\canada.jpg",filename="canada.jpg")
+            await message.channel.send('',file=file)
+
         if message.content.startswith('Ding! GG') and message.author.id == 159985870458322944:      # automatically update gaz coin count
             command = message.content.split()
             print_string = "Level up! "
@@ -201,7 +207,7 @@ class MyClient(discord.Client):
                     await message.channel.send(user1 + " now has " + str(gaz_coins[user1]) + " gaz coins. \n<@389919287785160714> play " + msg)
                 
             else:
-                await message.channel.send("Please enter a song title also (e.g. !gazsongreq ")
+                await message.channel.send("Please enter a song title also (e.g. !gazsongreq Elektronik Supersonik) ")
                 
         if message.content.startswith('!spam'):                                                     # !spam
             command = message.content.split()
@@ -221,10 +227,16 @@ class MyClient(discord.Client):
 
             for i in range(number):
                 await message.channel.send(print_string)
-                
+                                                                                                    # EMOJIS
         if message.content.startswith('!badping'):                                                  # !badping
             await message.channel.send('<:Pingsock:485258651708424194>')
-            
+        if message.content.startswith('!mrdestructoid'):
+            await message.channel.send('<:dovabotlogo:497200463297511434>')                         # !mrdestructoid
+        if message.content.startswith('!jaynePing'):
+            await message.channel.send('<:jaynePing:476400495947153408>')
+        if message.content.startswith('!pogU'):
+            await message.channel.send('<:PogU:468817722730348555>')
+
         if message.content.startswith('!applause'):                                                 # !applause
             await message.channel.send('\U0001F44F' * 50)
 
