@@ -77,8 +77,12 @@ class MyClient(discord.Client):
 
         if message.content.startswith('!testcommand'):                                      # !testcommand
             await message.channel.send("it works")
+            await message.channel.send("yes")
 
         # end test commands
+
+        if message.content.startswith('!join') or message.content.startswith('!play'):
+            await message.channel.send('No.')
 
         if message.content.startswith('!dungeonBoss'):                                      # !dungeonBoss
             bossHP = 0
