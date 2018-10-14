@@ -246,7 +246,7 @@ class MyClient(discord.Client):
 
         if message.content.startswith('!diagnoseme'):                                               # !diagnoseme
             responses = ['you have HIV.','you have coronary artery disease.','you are having a stroke.','you have lung cancer.','you have type 1 diabetes.','you have Alzheimer\'s disease.','you have tuberculosis.','you have melanoma.']
-            number = random.randint(1,7)
+            number = random.randint(0,7)
             await message.channel.send('After researching your symptoms, I conclude that ' + responses[number])
             
         if message.content.startswith('!dovabotcommands'):                                          # !dovabotcommands
