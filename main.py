@@ -234,12 +234,6 @@ class MyClient(discord.Client):
                                                                                                     # EMOJIS
         if message.content.startswith('!badping'):                                                  # !badping
             await message.channel.send('<:Pingsock:485258651708424194>')
-        if message.content.startswith('!mrdestructoid'):
-            await message.channel.send('<:dovabotlogo:497200463297511434>')                         # !mrdestructoid
-        if message.content.startswith('!jaynePing'):
-            await message.channel.send('<:jaynePing:476400495947153408>')
-        if message.content.startswith('!pogU'):
-            await message.channel.send('<:PogU:468817722730348555>')
 
         if message.content.startswith('!applause'):                                                 # !applause
             await message.channel.send('\U0001F44F' * 50)
