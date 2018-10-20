@@ -8,7 +8,7 @@ Bot for the Scandals Family Discord server
 import discord, asyncio, random, time
 
 gaz_coins = {"<@!262637906865291264>" : 11, "<@!178876334095859712>" : 7, "<@!201509495220731906>" : 6,  # Dovahkiin, JSD, NeatoBurrito
-             "<@!158033864562835456>" : 14, "<@389919287785160714>" : 6, "<@!187697102615216128>" : 7,   # Mege, Gazorpazorp, Astrae
+             "<@!158033864562835456>" : 14, "<@!389919287785160714>" : 6, "<@!187697102615216128>" : 7,   # Mege, Gazorpazorp, Astrae
              "<@303235342935523330>" : 1, "<@180875776671875072>" : 8, "<@108833905552977920>" : 12,     # Bizna, Fone, Gen_1
              "<@251806188243648512>" : 3, "<@!210984200235515907>" : 1, "<@209575733989736448>" : 4,     # Zenattra, PandaBearKev, Kevadrenaline
              "<@!252315498551836673>" : 11, "<@!348278804973748238>" : 2, "<@384489637193973767>" : 1,   # WhaleScience, SantaClaws, Corpsetaker
@@ -81,8 +81,26 @@ class MyClient(discord.Client):
 
         # end test commands
 
-        if message.content.startswith('!join') or message.content.startswith('!play'):
-            await message.channel.send('No.')
+        if message.content.startswith('!givecoins'):
+            if message.author.id == 262637906865291264:
+                command = message.content.split()
+                if len(command) > 1:  # command is like !givecoins @gaz 10
+                    #print(command)
+                    #command.pop(0)
+                    #print('pop ')
+                    #print(command)
+                    if command[0] in gaz_coins:
+                        gaz_coins[command[0]] += int(command[1])
+                        await message.channel.send(command[0] + ' now has ' + str(gaz_coins[command[0]]) + ' gaz coins!')
+                    else:
+                        await message.channel.send('That person doesn\'t have a gaz coin amount.')
+                else:
+                    await message.channel.send('Wrong syntax')
+            else:
+                await message.channel.send('You can\'t use this command!')
+
+        #if message.content.startswith('!join') or message.content.startswith('!play'):
+        #   await message.channel.send('No.')
 
         if message.content.startswith('!dungeonBoss'):                                      # !dungeonBoss
             bossHP = 0
