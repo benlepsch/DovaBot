@@ -63,7 +63,7 @@ class MyClient(discord.Client):
         print('------')
         game = discord.Game("!dovabotcommands")
         await client.change_presence(status=discord.Status.idle, activity=game)
-        import_values("data\\leveldata.txt")
+        import_values("data/leveldata.txt")
         
     
     async def on_message(self, message):
@@ -135,16 +135,16 @@ class MyClient(discord.Client):
 
                                                                                      #  ''' SENDING PICTURES '''
         if message.content.startswith('!doot'):                                         # !doot
-            file = discord.File("data\\doot.jpg",filename="doot.jpg")
+            file = discord.File("data/doot.jpg",filename="doot.jpg")
             await message.channel.send('Doot Doot', file=file)
         if message.content.startswith('!canada'):                                       # !canada
-            file = discord.File("data\\canada.jpg",filename="canada.jpg")
+            file = discord.File("data/canada.jpg",filename="canada.jpg")
             await message.channel.send('',file=file)
 
         if message.content.startswith('Ding! GG') and message.author.id == 159985870458322944:      # automatically update gaz coin count
             command = message.content.split()
             print_string = "Level up! "
-            file = discord.File("data\\levelupimg.png",filename="levelupimg.png")
+            file = discord.File("data/levelupimg.png",filename="levelupimg.png")
 
             name = command[2] # command is : Ding! GG @<name>
             arr = []
@@ -165,7 +165,7 @@ class MyClient(discord.Client):
             if final_name_1 in gaz_coins:
                 gaz_coins[final_name_1] += 1
                 print_string += final_name_1 + " now has " + str(gaz_coins[final_name_1]) + " gaz coins!"
-            export_values("data\\leveldata.txt")
+            export_values("data/leveldata.txt")
             await message.channel.send(print_string, file=file)
 
         if message.content.startswith('!gazcoins'):                                                 # !gazcoins
@@ -196,11 +196,11 @@ class MyClient(discord.Client):
 
             if username1 in gaz_coins:
                 gaz_coins[username1] -= 1
-                export_values("data\\leveldata.txt")
+                export_values("data/leveldata.txt")
                 await message.channel.send(username1 + " now has " + str(gaz_coins[username1]) + " gaz coins. \n<@389919287785160714> " + msg)
             elif username2 in gaz_coins:
                 gaz_coins[username2] -= 1
-                export_values("data\\leveldata.txt")
+                export_values("data/leveldata.txt")
                 await message.channel.send(username2 + " now has " + str(gaz_coins[username2]) + " gaz coins. \n<@389919287785160714> " + msg)
 
         if message.content.startswith('!gazsongreq'):                                               # !gazsongreq
@@ -218,14 +218,14 @@ class MyClient(discord.Client):
                     for i in command:
                         msg += i
                         msg += ' '
-                    export_values("data\\leveldata.txt")
+                    export_values("data/leveldata.txt")
                     await message.channel.send(user1 + " now has " + str(gaz_coins[user1]) + " gaz coins. \n<@389919287785160714> play " + msg)
                 if user2 in gaz_coins:
                     gaz_coins[user2] -= 1
                     for i in command:
                         msg += i
                         msg += ' '
-                    export_values("data\\leveldata.txt")
+                    export_values("data/leveldata.txt")
                     await message.channel.send(user1 + " now has " + str(gaz_coins[user1]) + " gaz coins. \n<@389919287785160714> play " + msg)
                 
             else:
