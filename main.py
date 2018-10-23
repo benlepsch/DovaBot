@@ -242,6 +242,10 @@ class MyClient(discord.Client):
                 number = 0
             command.pop(0)
             
+            if "<@!262637906865291264>" in command:
+                await message.channel.send('Don\'t @ my creator!')
+                return
+
             print_string = ''
             for i in command:
                 print_string += i
