@@ -86,7 +86,7 @@ class MyClient(discord.Client):
                 command = message.content.split()
                 if len(command) > 1:  # command is like !givecoins @gaz 10
                     #print(command)
-                    #command.pop(0)
+                    command.pop(0)
                     #print('pop ')
                     #print(command)
                     if command[0] in gaz_coins:
