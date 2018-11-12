@@ -8,12 +8,12 @@ Bot for the Scandals Family Discord server
 import discord, asyncio, random, time
 
 gaz_coins = {"<@!262637906865291264>" : 11, "<@!178876334095859712>" : 7, "<@!201509495220731906>" : 6,  # Dovahkiin, JSD, NeatoBurrito
-             "<@!158033864562835456>" : 14, "<@!389919287785160714>" : 6, "<@!187697102615216128>" : 7,   # Mege, Gazorpazorp, Astrae
+             "<@!158033864562835456>" : 14, "<@!389919287785160714>" : 6, "<@!187697102615216128>" : 7,  # Mege, Gazorpazorp, Astrae
              "<@303235342935523330>" : 1, "<@180875776671875072>" : 8, "<@108833905552977920>" : 12,     # Bizna, Fone, Gen_1
              "<@251806188243648512>" : 3, "<@!210984200235515907>" : 1, "<@209575733989736448>" : 4,     # Zenattra, PandaBearKev, Kevadrenaline
              "<@!252315498551836673>" : 11, "<@!348278804973748238>" : 2, "<@384489637193973767>" : 1,   # WhaleScience, SantaClaws, Corpsetaker
              "<@385092345814581260>" : 7, "<@420346616977817602>" : 2, "<@175784984655822848>" : 7,      # SlayinSteven, DevilOW, Matthzw
-             "<@!257037119153897472>" : 16}                                                              # Liberosi/Aku
+             "<@!147143518241030144>" : 0, "<@!257037119153897472>" : 16}                                # Bearsteaks, Liberosi/Aku
 
 bossRaces = ['Orcish', 'Elvish']
 bossTypes = ['Mage', 'Knight', 'Archer']
@@ -81,6 +81,9 @@ class MyClient(discord.Client):
 
         # end test commands
 
+        if message.content.startswith('!poke'):
+            print(message.author)
+            await message.author.send('yes')
         if message.content.startswith('!givecoins'):
             if message.author.id == 262637906865291264:
                 command = message.content.split()
